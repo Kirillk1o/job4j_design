@@ -38,7 +38,7 @@ class BoxTest {
 
     @Test
     void isExitFalseTest() {
-        Box box = new Box(3,9);
+        Box box = new Box(3, 9);
         boolean rsl = box.isExist();
         assertThat(rsl).isFalse();
     }
