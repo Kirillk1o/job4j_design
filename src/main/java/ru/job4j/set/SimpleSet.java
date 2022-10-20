@@ -7,14 +7,13 @@ import java.util.Objects;
 
 public class SimpleSet<T> implements Set<T> {
 
-    private SimpleArrayList<T> set = new SimpleArrayList<>(0);
+    private SimpleArrayList<T> set = new SimpleArrayList<>(3);
 
     @Override
     public boolean add(T value) {
-        boolean rsl = false;
-        if (!contains(value)) {
+        boolean rsl = !contains(value);
+        if (rsl) {
             set.add(value);
-            rsl = true;
         }
         return rsl;
     }
@@ -22,9 +21,10 @@ public class SimpleSet<T> implements Set<T> {
     @Override
     public boolean contains(T value) {
         boolean rsl = false;
-        for (T tmp : set) {
-            if (Objects.equals(tmp, value)) {
+        for (T el : set) {
+            if (Objects.equals(el, value)) {
                 rsl = true;
+                break;
             }
         }
         return rsl;
