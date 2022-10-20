@@ -18,7 +18,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
     @Override
     public void add(T value) {
         if (size + 1 > container.length) {
-            grow()
+            grow();
         }
         container[size] = value;
         size++;
