@@ -7,27 +7,30 @@ import java.util.Objects;
 
 public class SimpleLinkedList<E> implements LinkedList<E> {
 
-    private class Node<E> {
-        E item;
-        Node<E> next;
-        Node<E> prev;
-    }
-
-    private Node<E>[] conteiner = new Node[10];
-
+    private Node<E> first;
+    private Node<E> last;
+    private int modCount;
     private int size;
 
-    private int modCount;
+    private static class Node<E> {
+        E item;
+        Node<E> next;
+
+        Node(E element, Node<E> next) {
+            this.item = element;
+            this.next = next;
+        }
+    }
 
     @Override
     public void add(E value) {
-        Node<E> el = new Node<>();
-        el.item = value;
-        if (size != 0) {
-            el.prev = conteiner[size - 1];
-            conteiner[size - 1].next = el;
+        Node<E> el = new Node<>(value, null);
+        if (first == null) {
+            first = el;
+        } else {
+            last.next = el;
         }
-        conteiner[size] = el;
+        last = el;
         size++;
         modCount++;
     }
@@ -35,29 +38,38 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
     @Override
     public E get(int index) {
         Objects.checkIndex(index, size);
-        return conteiner[index].item;
+        Node<E> el = first;
+        for (int i = 0; i < size; i++) {
+            if (i == index) {
+                break;
+            }
+            el = el.next;
+        }
+        return el.item;
     }
 
     @Override
     public Iterator<E> iterator() {
-        int exceptedModCount = modCount;
         return new Iterator<E>() {
-            private int count;
+            int expectedModCount = modCount;
+            Node<E> el = first;
 
             @Override
             public boolean hasNext() {
-                return count < size;
+                if (expectedModCount != modCount) {
+                    throw new ConcurrentModificationException();
+                }
+                return el != null;
             }
 
             @Override
             public E next() {
-                if (exceptedModCount != modCount) {
-                    throw new ConcurrentModificationException();
-                }
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return conteiner[count++].item;
+                E val = el.item;
+                el = el.next;
+                return val;
             }
         };
     }
