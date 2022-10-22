@@ -40,9 +40,6 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
         Objects.checkIndex(index, size);
         Node<E> el = first;
         for (int i = 0; i < index; i++) {
-            if (i == index) {
-                break;
-            }
             el = el.next;
         }
         return el.item;
