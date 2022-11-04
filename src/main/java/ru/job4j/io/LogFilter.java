@@ -10,9 +10,9 @@ public class LogFilter {
         List<String> rsl = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader("log.txt"))) {
             rsl = in.lines()
-                    .filter(s -> s.contains("404"))
+                    .filter(s -> s.contains(" 404 "))
                     .collect(Collectors.toList());
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return rsl;
@@ -23,8 +23,10 @@ public class LogFilter {
                 new BufferedOutputStream(
                         new FileOutputStream(file)
                 ))) {
-            out.println(log);
-        } catch (Exception e) {
+            for (String tmp : log) {
+                out.println(tmp);
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -32,7 +34,7 @@ public class LogFilter {
     public static void main(String[] args) {
         LogFilter logFilter = new LogFilter();
         List<String> log = logFilter.filter("log.txt");
-        System.out.println(log);
         save(log, "404.txt");
+        log.forEach(System.out::println);
     }
 }
