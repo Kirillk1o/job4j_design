@@ -26,8 +26,8 @@ public class LogFilter {
             for (String tmp : log) {
                 out.println(tmp);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
     }
 
