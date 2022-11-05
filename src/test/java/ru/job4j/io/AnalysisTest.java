@@ -31,7 +31,7 @@ class AnalysisTest {
         Analysis analysis = new Analysis();
         analysis.unavailable(source.getAbsolutePath(), target.getAbsolutePath());
         StringBuilder rsl = new StringBuilder();
-        try (BufferedReader in = new BufferedReader(new FileReader(target))){
+        try (BufferedReader in = new BufferedReader(new FileReader(target))) {
             in.lines().forEach(rsl::append);
         }
     }
