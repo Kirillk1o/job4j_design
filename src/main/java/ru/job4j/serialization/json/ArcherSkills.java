@@ -15,6 +15,11 @@ public class ArcherSkills {
     public ArcherSkills() {
     }
 
+    public String getAtack() {
+        return atack;
+    }
+
+
     @Override
     public String toString() {
         return "ArcherSkills{"

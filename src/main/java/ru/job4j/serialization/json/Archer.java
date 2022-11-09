@@ -33,6 +33,26 @@ public class Archer {
     public Archer() {
     }
 
+    public boolean isSex() {
+        return sex;
+    }
+
+    public int getRange() {
+        return range;
+    }
+
+    public ArcherSkills getSkills() {
+        return skills;
+    }
+
+    public String getRace() {
+        return race;
+    }
+
+    public String[] getStatuses() {
+        return statuses;
+    }
+
     @Override
     public String toString() {
         return "Archer{"
