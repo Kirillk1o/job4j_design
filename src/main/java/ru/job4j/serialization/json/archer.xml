@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<archer sex = "false" range="234">
+    <archer skills="Shoots fire arrows"/>
+    <archer race = "Elf"/>
+    <statuses>
+        <status>Alive</status>
+        <status>Light</status>
+    </statuses>
+</archer>
