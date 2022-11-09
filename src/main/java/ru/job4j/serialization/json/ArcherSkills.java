@@ -11,6 +11,7 @@ public class ArcherSkills {
     public ArcherSkills(String atack) {
         this.atack = atack;
     }
+
     public ArcherSkills() {
     }
 
@@ -18,6 +19,6 @@ public class ArcherSkills {
     public String toString() {
         return "ArcherSkills{"
                 + "atack='" + atack + '\''
-        + '}';
+                + '}';
     }
 }
