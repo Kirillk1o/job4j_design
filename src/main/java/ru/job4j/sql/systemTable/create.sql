@@ -1,12 +1,12 @@
+create table role(
+id serial primary key,
+names varchar(255)
+);
+
 create table users(
 id serial primary key,
 names varchar(255),
 role_id int references role(id)
-);
-
-create table role(
-id serial primary key,
-names varchar(255)
 );
 
 create table rules(
@@ -39,13 +39,14 @@ id serial primary key,
 names varchar(255)
 );
 
-create table category(
-id serial primary key,
-names varchar(255)
-);
-
 create table role_rules(
 id serial primary key,
 role_id int references role(id),
 rules_id int references rules(id)
 );
+
+create table category(
+id serial primary key,
+names varchar(255)
+);
+
