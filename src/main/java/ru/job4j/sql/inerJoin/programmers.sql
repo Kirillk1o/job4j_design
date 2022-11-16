@@ -19,13 +19,20 @@ insert into programmer(name, speciality_id) values ('Semen', 2);
 insert into programmer(name, speciality_id) values ('Alexander', 3);
 
 select pr.name, sp.position, sp.rank 
-from programmer as pr join speciality as sp on pr.speciality_id = sp.id;
+from programmer as pr
+join speciality as sp
+on pr.speciality_id = sp.id;
 
 select pr.name as Имя, sp.position as Направление, sp.rank as Позиция
-from programmer as pr join speciality as sp on pr.speciality_id = sp.id;
+from programmer as pr
+join speciality as sp
+on pr.speciality_id = sp.id;
 
-select pr. name as "Имя программиста", sp.position as Направление, sp.rank as Позиция
-from programmer as pr join speciality as sp on pr.speciality_id= sp.id;
+select pr. name as "Имя программиста",
+sp.position as Направление, sp.rank as Позиция
+from programmer as pr
+join speciality as sp
+on pr.speciality_id= sp.id;
 
 
 
