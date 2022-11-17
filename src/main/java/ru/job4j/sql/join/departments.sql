@@ -31,23 +31,24 @@ select * from departments d
 right join employees e 
 on e.departments_id = d.id;
 
-select * from employees e 
+select * from employees e
 full join departments d 
 on e.departments_id = d.id;
 
-select * from employees e 
+select * from employees e
 cross join departments d;
 
-select d.id, d.name 
-from departments as d
-left join employees AS e
-on d.id = e.departments_id
-where e.id is null;
+select d.name
+from departments d
+left join employees e
+on p.id = e.position_id
+where e.name is null;
 
-select * from employees e
-left join departments d 
-on e.departments_id = d.id
-union
-select * from employees e
-right join departments d 
+select d.name, e.name
+from employees e
+left join departments d
+on e.departments_id = d.id;
+select d.name, e.name
+from departments d
+right join employees e
 on e.departments_id = d.id;

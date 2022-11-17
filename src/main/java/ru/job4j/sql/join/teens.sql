@@ -9,6 +9,7 @@ insert into teens(name, gender) values ('Nika', 'Ж');
 insert into teens(name, gender) values ('Alexander', 'M');
 insert into teens(name, gender) values ('Alexandra', 'Ж');
 
-select g1.name, g2.gender
-from teens as g1
-cross join teens g2;
+select g1.name, g2.name
+from teens g1
+cross join teens g2
+where g1.gender != g2.gender;
