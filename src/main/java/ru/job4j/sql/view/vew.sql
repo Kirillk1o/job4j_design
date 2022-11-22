@@ -8,8 +8,7 @@ join vacancy
 on info.vacancy_id = vacancy.id
 join companies
 on vacancy.companies_id = companies.id
-group by (employees.name,vacancy.name, companies.name)
-having vacancy.name ='Бухгалтер'
+where  vacancy.name ='Бухгалтер'
 order by employees.name;
 
 alter view show_employees_who_are_accountants rename to new_name;
