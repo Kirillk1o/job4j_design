@@ -29,15 +29,13 @@ create or replace function tax_before_insert()
     returns trigger as
 $$
     BEGIN
-        update products
-        set price = price + price * 0.2
-        where id = new.id;
-        return NEW;
+        new.price = new.price + new.price * 0.2;
+        return new;
     END;
 $$
 LANGUAGE 'plpgsql';
 
-create trigger tax_product_trigger_befor_insert
+create trigger tax_product_trigger_before_insert
 before insert on product
 for each row
 execute procedure tax_before_insert();
@@ -52,14 +50,14 @@ create table history_of_price (
 create or replace function history_insert()
     returns trigger as
 $$
-    begin
+    BEGIN
         insert into history_of_price (name, price, date) values(new.name, new.price, current_timestamp);
         return new;
-    end;
+    END;
 $$
 LANGUAGE 'plpgsql';
 
 create trigger history_trigger_price_insert_date
-bafore insert
-on products
-for each row execute procedure history_insert();
+before insert on products
+for each row
+execute procedure history_insert();
