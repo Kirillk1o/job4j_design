@@ -11,20 +11,19 @@ language 'plpgsql'
 as $$
     BEGIN
     	delete from products
-    	where name price < i_price or price is null;
+    	where price < i_price or price is null;
     END;
 $$;
 
-create replace function delete_data(i_price integer)
-returns integer
+create or replace function delete_data(i_count integer)
+returns void
 language 'plpgsql'
 as $$
     declare
         result integer;
     begin
         delete from products
-    	where name price < i_price or price is null;
-    	return result;
+    	where  count < i_count or count is null;
     end;
 $$;
 
