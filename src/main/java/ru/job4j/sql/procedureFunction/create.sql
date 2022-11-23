@@ -6,7 +6,7 @@ create table products (
     price integer
 );
 
-create or replace procedure delete_data(i_price integer)
+create or replace procedure delete_data_price(i_price integer)
 language 'plpgsql'
 as $$
     BEGIN
@@ -15,12 +15,10 @@ as $$
     END;
 $$;
 
-create or replace function delete_data(i_count integer)
+create or replace function delete_data_count(i_count integer)
 returns void
 language 'plpgsql'
 as $$
-    declare
-        result integer;
     begin
         delete from products
     	where  count < i_count or count is null;
