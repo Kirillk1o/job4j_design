@@ -48,7 +48,7 @@ select * from teachers;
 insert into teachers (name, age, subject) VALUES ('Валерий Сидоров', 54, 'Геометрия');
 savepoint thrid;
 ---удаление таблицы---
-drop to table;
+drop table teachers;
 ---вернуться до точки сохранения---
 rollback to third;
 ---отображение данных в таблице---
