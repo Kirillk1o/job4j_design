@@ -16,7 +16,7 @@ class ConfigTest {
 
     @Test
     void whenPairWithComment() {
-        String path = "./data/*.properties";
+        String path = "src/main/resources/*.properties";
         Config config = new Config(path);
         config.load();
         assertThat(config.value("hibernate.connection.username")).isEqualTo("postgres");
@@ -32,7 +32,7 @@ class ConfigTest {
 
     @Test
     void whenPairWithEmptyString() {
-        String path = "./data/*.properties";
+        String path = "src/main/resources/*.properties";
         Config config = new Config(path);
         config.load();
         assertThat(config.value("hibernate.connection.username")).isEqualTo("postgres");
