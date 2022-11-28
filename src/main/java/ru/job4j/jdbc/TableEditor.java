@@ -126,7 +126,7 @@ public class TableEditor implements AutoCloseable {
 
     public static void main(String[] args) throws Exception {
         Properties config = new Properties();
-        try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("*.properties")) {
+        try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("*.propertiees")) {
             config.load(in);
             TableEditor table = new TableEditor(config);
             table.createTable("worker");
