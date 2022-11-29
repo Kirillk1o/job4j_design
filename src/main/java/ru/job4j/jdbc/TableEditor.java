@@ -24,12 +24,10 @@ public class TableEditor implements AutoCloseable {
     подключение к БД>:
     */
     private void initConnection() throws ClassNotFoundException, SQLException {
-        Config config = new Config("src/main/resources/*.properties");
-        config.load();
-        Class.forName("org.postgresql.Driver");
-        String url = config.value("hibernate.connection.url");
-        String login = config.value("hibernate.connection.username");
-        String password = config.value("hibernate.connection.password");
+        Class.forName(properties.getProperty("hibernate.connection.driver"));
+        String url = properties.getProperty("hibernate.connection.url");
+        String login = properties.getProperty("hibernate.connection.username");
+        String password = properties.getProperty("hibernate.connection.password");
         connection = DriverManager.getConnection(url, login, password);
     }
 
@@ -126,7 +124,7 @@ public class TableEditor implements AutoCloseable {
 
     public static void main(String[] args) throws Exception {
         Properties config = new Properties();
-        try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("*.properties")) {
+        try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("app.properties")) {
             config.load(in);
             TableEditor table = new TableEditor(config);
             table.createTable("worker");
@@ -135,7 +133,6 @@ public class TableEditor implements AutoCloseable {
             table.renameColumn("worker", "name", "full_name");
             table.dropColumn("worker", "age");
             System.out.println(getTableScheme(table.connection, "worker"));
-            table.close();
         }
     }
 }
