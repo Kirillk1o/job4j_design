@@ -122,7 +122,7 @@ public class TableEditor implements AutoCloseable {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args)  {
         Properties config = new Properties();
         try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("app.properties")) {
             config.load(in);
@@ -132,7 +132,16 @@ public class TableEditor implements AutoCloseable {
             table.addColumn("worker", "age", "int");
             table.renameColumn("worker", "name", "full_name");
             table.dropColumn("worker", "age");
+            table.dropTable("worker");
             System.out.println(getTableScheme(table.connection, "worker"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }
